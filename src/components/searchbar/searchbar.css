@@ -1,0 +1,25 @@
+.searchbar-container {
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchbar-form {
+  width: 70%;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.searchbar {
+  width: 70%;
+  border: none;
+  height: 2.5rem;
+  background-color: rgb(29, 29, 29);
+}
+.search-btn {
+  width: 20px;
+  background-color: inherit;
+  fill: black;
+}
