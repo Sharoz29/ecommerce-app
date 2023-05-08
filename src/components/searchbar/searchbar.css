@@ -5,21 +5,32 @@
   justify-content: center;
 }
 .searchbar-form {
-  width: 70%;
-  height: 4rem;
+  width: 90%;
+  height: 3rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border: 1px solid white;
+  border-radius: 1rem;
 }
 .searchbar {
-  width: 70%;
+  width: 90%;
   border: none;
   height: 2.5rem;
   background-color: rgb(29, 29, 29);
+  color: white;
 }
+.searchbar:focus {
+  border: none;
+  outline: none;
+}
+.searchbar:active {
+  border: none;
+}
+
 .search-btn {
   width: 20px;
   background-color: inherit;
-  fill: black;
+  fill: white;
 }
