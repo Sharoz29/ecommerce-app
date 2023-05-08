@@ -1,9 +1,13 @@
 import "./searchbar.css";
 
 const Searchbar = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="searchbar-container">
-      <form className="searchbar-form">
+      <form className="searchbar-form" onSubmit={handleSubmit}>
         <input
           type="search"
           className="searchbar"

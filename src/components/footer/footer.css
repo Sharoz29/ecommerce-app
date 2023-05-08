@@ -23,6 +23,7 @@
 }
 .content-item:hover {
   opacity: 1;
+  cursor: pointer;
 }
 .social-media {
   display: flex;
@@ -46,4 +47,5 @@
 }
 .copyrights > a :hover {
   text-decoration: underline;
+  cursor: pointer;
 }

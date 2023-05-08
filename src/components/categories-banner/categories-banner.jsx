@@ -1,8 +1,9 @@
+import { useState } from "react";
 import "./categories-banner.css";
 
 const CategoriesBanner = ({ categories }) => {
   const categoryTypes = categories;
-  console.log(categoryTypes);
+
   if (categoryTypes.length === 0) {
     return <div>Loading</div>;
   }
@@ -17,7 +18,11 @@ const CategoriesBanner = ({ categories }) => {
           return (
             <div className="category" key={i}>
               <img src={imageSrc} alt="" className="category-image" />
-              <span className="category-name">{title}</span>
+              <span className="category-item-name">{title}</span>
+
+              <div className="cart-adding-container">
+                <button className="cart-adding-button">Add To Cart</button>
+              </div>
             </div>
           );
         })}
