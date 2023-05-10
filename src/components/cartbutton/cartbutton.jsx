@@ -1,6 +1,10 @@
 import "./cartbutton.css";
 
-const CartButton = () => {
-  return <button className="cart-adding-button">Add To Cart</button>;
+const CartButton = ({ clicked }) => {
+  return (
+    <button className="cart-adding-button" onClick={clicked}>
+      Add To Cart
+    </button>
+  );
 };
 export default CartButton;

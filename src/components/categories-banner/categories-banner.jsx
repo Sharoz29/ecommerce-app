@@ -1,5 +1,6 @@
 import "./categories-banner.css";
-import CartButton from "../cartbutton/cartbutton";
+
+import CategoryCard from "../category-card/category-card";
 
 const CategoriesBanner = ({ categories }) => {
   const categoryTypes = categories;
@@ -11,22 +12,7 @@ const CategoriesBanner = ({ categories }) => {
   return (
     <div className="categories-container">
       <h3 className="categories-title">Our Top Products</h3>
-      <div className="categories">
-        {categoryTypes.map((category, i) => {
-          const title = category.title;
-          const imageSrc = category.image;
-          return (
-            <div className="category" key={i}>
-              <img src={imageSrc} alt="" className="category-image" />
-              <span className="category-item-name">{title}</span>
-
-              <div className="cart-adding-container">
-                <CartButton />
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <CategoryCard products={categoryTypes} />
     </div>
   );
 };
