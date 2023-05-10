@@ -6,6 +6,8 @@ import Electronics from "./routes/electronics/electronics";
 import Jewelery from "./routes/jewelery/jewelery";
 import MensClothing from "./routes/mens-clothing/mensClothing";
 import WomensClothing from "./routes/womens-clothing/womensClothing";
+import SignIn from "./routes/sign-in/sign-in";
+import Cart from "./routes/cart/cart.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +34,14 @@ function App() {
     {
       path: "women'sclothing",
       element: <WomensClothing />,
+    },
+    {
+      path: "sign-in",
+      element: <SignIn />,
+    },
+    {
+      path: "my-cart",
+      element: <Cart />,
     },
   ]);
 

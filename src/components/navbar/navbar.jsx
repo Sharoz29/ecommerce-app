@@ -7,9 +7,21 @@ import CategoriesBar from "../categoriesbar/categoriesbar";
 import { Fragment } from "react";
 import useFetcher from "../../fetcher";
 import { requests } from "../../requests";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
+  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
+  const { user } = useAuth0();
+
   const [categories] = useFetcher(requests.categories);
+  const onClickFunction = () => {
+    loginWithRedirect();
+  };
+
+  const logoutClick = () => {
+    logout({ logoutParams: { returnTo: window.location.origin } });
+  };
 
   return (
     <Fragment>
@@ -27,13 +39,22 @@ const Navbar = () => {
         <Link to={"/shop"} className="link">
           <div className="shop-container container">Shop </div>
         </Link>
-        <Link to={"/sign-in"} className="link">
-          <div className="signin-container container">
-            <span className="sign-in">Sign in</span>
-          </div>
-        </Link>
+
+        <div className="signin-container container">
+          {!user && (
+            <span className="sign-in" onClick={onClickFunction}>
+              Sign in
+            </span>
+          )}
+          {user && (
+            <span className="sign-in" onClick={logoutClick}>
+              Log out
+            </span>
+          )}
+        </div>
+
         <Link to={"/my-cart"} className="link">
-          <div className="cart-container container">
+          <div className="cart-container container" user={user}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
