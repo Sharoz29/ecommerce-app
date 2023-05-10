@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./categories.css";
 
 const CategoriesBar = ({ categories }) => {
@@ -7,9 +8,13 @@ const CategoriesBar = ({ categories }) => {
     <div className="category-names-container">
       {categoryNames.map((categoryName, i) => {
         return (
-          <span className="category-name" key={i}>
+          <Link
+            to={`/${categoryName.replace(/\s+/g, "")}`}
+            className="category-name"
+            key={i}
+          >
             {categoryName}
-          </span>
+          </Link>
         );
       })}
     </div>

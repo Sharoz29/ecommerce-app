@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "./categories-banner.css";
+import CartButton from "../cartbutton/cartbutton";
 
 const CategoriesBanner = ({ categories }) => {
   const categoryTypes = categories;
@@ -21,7 +21,7 @@ const CategoriesBanner = ({ categories }) => {
               <span className="category-item-name">{title}</span>
 
               <div className="cart-adding-container">
-                <button className="cart-adding-button">Add To Cart</button>
+                <CartButton />
               </div>
             </div>
           );
