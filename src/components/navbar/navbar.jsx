@@ -36,6 +36,11 @@ const Navbar = () => {
           </div>
         </Link>
         <Searchbar />
+        {user && (
+          <div className="user-image-container">
+            <img src={user.picture} alt="" className="user-image" />
+          </div>
+        )}
         <Link to={"/shop"} className="link">
           <div className="shop-container container">Shop </div>
         </Link>
@@ -52,7 +57,6 @@ const Navbar = () => {
             </span>
           )}
         </div>
-
         <Link to={"/my-cart"} className="link">
           <div className="cart-container container" user={user}>
             <svg
