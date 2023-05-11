@@ -9,8 +9,11 @@ import { requests } from "../../requests";
 import Navbar from "../../components/navbar/navbar";
 
 const Home = () => {
-  const [topProducts] = useFetcher(requests.topProducts);
+  const [alltopProducts] = useFetcher(requests.topProducts);
 
+  const topProducts = alltopProducts.map((product) => {
+    return { ...product, quantity: 1 };
+  });
   return (
     <Fragment>
       <Navbar />

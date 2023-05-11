@@ -17,6 +17,30 @@ const CategoryCard = ({ products }) => {
   const { cartItems } = useSelector(cartItemsStateSelector);
   const { setCartItems } = cartItemsActionDispatcher(useDispatch());
 
+  const addCartItem = (cartItems, productToAdd) => {
+    console.log(cartItems);
+    //  If cart contains product to add
+    const existingCartItem = cartItems.find(
+      (item) => item.id === productToAdd.id
+    );
+
+    //  if found increase quantity
+    if (existingCartItem) {
+      return cartItems.map((item) =>
+        item.id === productToAdd.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    }
+
+    //  if not found return new array with cart item
+    return [...cartItems, productToAdd];
+  };
+
+  const increaseCartItem = (newItemToAdd) => {
+    setCartItems(addCartItem(cartItems, newItemToAdd));
+  };
+
   const addingToCart = (e) => {
     const productId = e.target.parentElement.getAttribute("id").toString();
     const [added] = products.filter((product) => {
@@ -24,9 +48,9 @@ const CategoryCard = ({ products }) => {
         return product;
       }
     });
-    setCartItems([...cartItems, added]);
+    increaseCartItem(added);
   };
-  console.log(cartItems);
+  // console.log(cartItems);
 
   const allProducts = products;
   return (
@@ -49,5 +73,3 @@ const CategoryCard = ({ products }) => {
 };
 
 export default CategoryCard;
-
-//Set cart items to ensure no repeatition

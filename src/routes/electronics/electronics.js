@@ -6,8 +6,11 @@ import { Fragment } from "react";
 import "./electronics.css";
 
 const Electronics = () => {
-  const [electronics] = useFetcher(requests.electronics);
-  console.log(electronics);
+  const [electronicsProducts] = useFetcher(requests.electronics);
+
+  const electronics = electronicsProducts.map((product) => {
+    return { ...product, quantity: 1 };
+  });
 
   return (
     <Fragment>

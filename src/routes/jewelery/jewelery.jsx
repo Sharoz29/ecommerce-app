@@ -5,7 +5,12 @@ import { Fragment } from "react";
 import Navbar from "../../components/navbar/navbar";
 
 const Jewelery = () => {
-  const [jewelery] = useFetcher(requests.jewelery);
+  const [jeweleryProduct] = useFetcher(requests.jewelery);
+
+  const jewelery = jeweleryProduct.map((product) => {
+    return { ...product, quantity: 1 };
+  });
+
   return (
     <Fragment>
       <Navbar />

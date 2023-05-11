@@ -103,3 +103,6 @@
 .change-quantity {
   font-size: 1.4rem;
 }
+.change-quantity:hover {
+  cursor: pointer;
+}

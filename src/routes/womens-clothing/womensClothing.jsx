@@ -6,7 +6,11 @@ import { Fragment } from "react";
 import Navbar from "../../components/navbar/navbar";
 
 const WomensClothing = () => {
-  const [womenclothing] = useFetcher(requests.womenclothing);
+  const [womenclothingProducts] = useFetcher(requests.womenclothing);
+
+  const womenclothing = womenclothingProducts.map((product) => {
+    return { ...product, quantity: 1 };
+  });
 
   return (
     <Fragment>

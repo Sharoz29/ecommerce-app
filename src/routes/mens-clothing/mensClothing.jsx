@@ -6,8 +6,12 @@ import Navbar from "../../components/navbar/navbar";
 import CategoryCard from "../../components/category-card/category-card";
 
 const MensClothing = () => {
-  const [mensClothing] = useFetcher(requests.menclothing);
-  console.log(mensClothing);
+  const [mensClothingProduct] = useFetcher(requests.menclothing);
+
+  const mensClothing = mensClothingProduct.map((product) => {
+    return { ...product, quantity: 1 };
+  });
+
   return (
     <Fragment>
       <Navbar />

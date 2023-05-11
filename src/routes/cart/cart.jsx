@@ -22,7 +22,7 @@ const Cart = () => {
   const { setCartItems } = cartItemsActionDispatcher(useDispatch());
 
   const { user } = useAuth0();
-  console.log(user, cartItems);
+  // console.log(user, cartItems);
 
   const clearCartItems = () => {
     setCartItems([]);
@@ -49,7 +49,7 @@ const Cart = () => {
             </div>
             <div className="cart-item-quantity-container">
               <span className="cart-item-quantity">
-                <span className="change-quantity">&#8722;</span> 1{" "}
+                <span className="change-quantity">&#8722;</span> {item.quantity}{" "}
                 <span className="change-quantity">&#43;</span>
               </span>
             </div>

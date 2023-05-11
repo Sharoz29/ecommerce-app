@@ -7,7 +7,11 @@ import Navbar from "../../components/navbar/navbar";
 import CategoryCard from "../../components/category-card/category-card";
 
 const Shop = () => {
-  const [allProducts] = useFetcher(requests.allProducts);
+  const [allProductsProducts] = useFetcher(requests.allProducts);
+
+  const allProducts = allProductsProducts.map((product) => {
+    return { ...product, quantity: 1 };
+  });
 
   return (
     <Fragment>
