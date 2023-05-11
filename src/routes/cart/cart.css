@@ -50,6 +50,9 @@
   position: absolute;
   right: 5%;
 }
+.cart-item-clear:hover {
+  cursor: pointer;
+}
 
 .other-buttons {
   display: flex;

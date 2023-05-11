@@ -62,6 +62,60 @@ const Cart = () => {
     increaseCartItem(added);
   };
 
+  const decreaseCartItem = (cartItems, cartItemToDecrease) => {
+    // find the cart item to remove
+    const existingCartItem = cartItems.find(
+      (cartItem) => cartItem.id === cartItemToDecrease.id
+    );
+
+    // check if quantity is equal to 1, if it is remove that item from the cart
+    if (existingCartItem.quantity === 1) {
+      return cartItems.filter(
+        (cartItem) => cartItem.id !== cartItemToDecrease.id
+      );
+    }
+
+    // return back cartitems with matching cart item with reduced quantity
+    return cartItems.map((cartItem) =>
+      cartItem.id === cartItemToDecrease.id
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    );
+  };
+
+  const decreasedCartItem = (cartItems, cartItemToRemove) => {
+    setCartItems(decreaseCartItem(cartItems, cartItemToRemove));
+  };
+
+  const decreasingCartItem = (e) => {
+    const cartItemId = e.target.parentElement.getAttribute("id");
+    const [decreased] = cartItems.filter((product) => {
+      if (product.id.toString() === cartItemId) {
+        return product;
+      }
+    });
+    decreasedCartItem(cartItems, decreased);
+  };
+
+  const removeCartItem = (cartItems, cartItemToRemove) => {
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
+  };
+
+  const removedCartItem = (cartItems, cartItemToRemove) => {
+    setCartItems(removeCartItem(cartItems, cartItemToRemove));
+  };
+
+  const removingItemFromCart = (e) => {
+    const cartItemId = e.target.parentElement.getAttribute("id");
+    const [removed] = cartItems.filter((product) => {
+      if (product.id.toString() === cartItemId) {
+        return product;
+      }
+    });
+
+    removedCartItem(cartItems, removed);
+  };
+
   return (
     <Fragment>
       <Navbar />
@@ -83,7 +137,10 @@ const Cart = () => {
             </div>
             <div className="cart-item-quantity-container">
               <span className="cart-item-quantity" id={item.id}>
-                <span className="change-quantity">&#8722;</span> {item.quantity}{" "}
+                <span className="change-quantity" onClick={decreasingCartItem}>
+                  &#8722;
+                </span>{" "}
+                {item.quantity}{" "}
                 <span className="change-quantity" onClick={increasingCartItem}>
                   &#43;
                 </span>
@@ -92,8 +149,11 @@ const Cart = () => {
             <div className="cart-item-subtotal-container">
               <span className="cart-item-subtotal">${item.price}</span>
             </div>
-            <div className="cart-item-clear-container">
-              <span className="cart-item-clear"> &#10060;</span>
+            <div className="cart-item-clear-container" id={item.id}>
+              <span className="cart-item-clear" onClick={removingItemFromCart}>
+                {" "}
+                &#10060;
+              </span>
             </div>
           </div>
         ))}
