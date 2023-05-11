@@ -7,11 +7,6 @@ export const setCartItems = (cartItems) => ({
 
 // const createAction = (type, payload) => ({ type, payload });
 
-// export const addItemToCart = (cartItems, productToAdd) => {
-//   const newCartItems = addCartItem(cartItems, productToAdd);
-//   return createAction(cartTypeAction.SET_CART_ITEMS, newCartItems);
-// };
-
 // const removeCartItem = (cartItems, cartItemToRemove) => {
 //   // find the cart item to remove
 //   const existingCartItem = cartItems.find(

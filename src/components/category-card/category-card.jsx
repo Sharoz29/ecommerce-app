@@ -44,7 +44,7 @@ const CategoryCard = ({ products }) => {
   const addingToCart = (e) => {
     const productId = e.target.parentElement.getAttribute("id").toString();
     const [added] = products.filter((product) => {
-      if (product.id == productId) {
+      if (product.id.toString() === productId) {
         return product;
       }
     });

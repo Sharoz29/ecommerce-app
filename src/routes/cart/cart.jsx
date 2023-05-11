@@ -28,6 +28,40 @@ const Cart = () => {
     setCartItems([]);
   };
 
+  const addCartItem = (cartItems, productToAdd) => {
+    console.log(cartItems);
+    //  If cart contains product to add
+    const existingCartItem = cartItems.find(
+      (item) => item.id === productToAdd.id
+    );
+
+    //  if found increase quantity
+    if (existingCartItem) {
+      return cartItems.map((item) =>
+        item.id === productToAdd.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    }
+
+    //  if not found return new array with cart item
+    return [...cartItems, productToAdd];
+  };
+
+  const increaseCartItem = (newItemToAdd) => {
+    setCartItems(addCartItem(cartItems, newItemToAdd));
+  };
+
+  const increasingCartItem = (e) => {
+    const cartItemId = e.target.parentElement.getAttribute("id");
+    const [added] = cartItems.filter((product) => {
+      if (product.id.toString() === cartItemId) {
+        return product;
+      }
+    });
+    increaseCartItem(added);
+  };
+
   return (
     <Fragment>
       <Navbar />
@@ -48,9 +82,11 @@ const Cart = () => {
               <span className="cart-item-price">${item.price}</span>
             </div>
             <div className="cart-item-quantity-container">
-              <span className="cart-item-quantity">
+              <span className="cart-item-quantity" id={item.id}>
                 <span className="change-quantity">&#8722;</span> {item.quantity}{" "}
-                <span className="change-quantity">&#43;</span>
+                <span className="change-quantity" onClick={increasingCartItem}>
+                  &#43;
+                </span>
               </span>
             </div>
             <div className="cart-item-subtotal-container">
