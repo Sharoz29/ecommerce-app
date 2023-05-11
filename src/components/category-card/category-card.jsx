@@ -24,7 +24,7 @@ const CategoryCard = ({ products }) => {
         return product;
       }
     });
-    setCartItems(added ? [...cartItems, added] : [...cartItems]);
+    setCartItems([...cartItems, added]);
   };
   console.log(cartItems);
 

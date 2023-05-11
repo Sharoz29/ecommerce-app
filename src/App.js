@@ -43,6 +43,10 @@ function App() {
       path: "my-cart",
       element: <Cart />,
     },
+    {
+      path: "checkout",
+      element: <Home />,
+    },
   ]);
 
   return <RouterProvider router={router} />;
