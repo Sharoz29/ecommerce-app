@@ -6,16 +6,27 @@ import { createSelector } from "reselect";
 import { makeCartItems } from "../../store/cart/cartSelector";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setCartItems } from "../../store/cart/cartAction";
+import { useDispatch } from "react-redux";
 
 const cartItemsStateSelector = createSelector(makeCartItems, (cartItems) => ({
   cartItems,
 }));
 
+const cartItemsActionDispatcher = (dispatch) => ({
+  setCartItems: (cartItems) => dispatch(setCartItems(cartItems)),
+});
+
 const Cart = () => {
   const { cartItems } = useSelector(cartItemsStateSelector);
+  const { setCartItems } = cartItemsActionDispatcher(useDispatch());
 
   const { user } = useAuth0();
   console.log(user, cartItems);
+
+  const clearCartItems = () => {
+    setCartItems([]);
+  };
 
   return (
     <Fragment>
@@ -37,7 +48,10 @@ const Cart = () => {
               <span className="cart-item-price">${item.price}</span>
             </div>
             <div className="cart-item-quantity-container">
-              <span className="cart-item-quantity">1</span>
+              <span className="cart-item-quantity">
+                <span className="change-quantity">&#8722;</span> 1{" "}
+                <span className="change-quantity">&#43;</span>
+              </span>
             </div>
             <div className="cart-item-subtotal-container">
               <span className="cart-item-subtotal">${item.price}</span>
@@ -48,8 +62,12 @@ const Cart = () => {
           </div>
         ))}
         <div className="other-buttons">
-          <span className=" other continue-shopping">Continue Shopping</span>
-          <span className="other clear-cart">Clear Cart</span>
+          <Link to="/shop" className=" other continue-shopping">
+            Continue Shopping
+          </Link>
+          <span className="other clear-cart" onClick={clearCartItems}>
+            Clear Cart
+          </span>
         </div>
         <div className="statement-container">
           <div className="statement-subtotal-container sc">

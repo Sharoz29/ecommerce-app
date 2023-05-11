@@ -40,7 +40,7 @@
 }
 .cart-item-quantity-container {
   position: absolute;
-  left: 60%;
+  left: 59%;
 }
 .cart-item-subtotal-container {
   position: absolute;
@@ -66,6 +66,7 @@
 }
 .continue-shopping {
   background-color: rgb(90, 197, 81);
+  text-decoration: none;
 }
 .other:hover {
   transform: scale(1.1);
@@ -98,4 +99,7 @@
   font-weight: bold;
   color: rgb(90, 197, 81);
   font-style: italic;
+}
+.change-quantity {
+  font-size: 1.4rem;
 }

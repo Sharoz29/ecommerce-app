@@ -32,7 +32,6 @@ const CategoryCard = ({ products }) => {
   return (
     <div className="products-container">
       {allProducts.map((product, i) => {
-        // console.log(product.id);
         return (
           <div className="product-container" key={i} id={product.id}>
             <img src={product.image} alt="" className="product-image" />
