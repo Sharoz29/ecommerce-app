@@ -22,7 +22,6 @@ const Cart = () => {
   const { setCartItems } = cartItemsActionDispatcher(useDispatch());
 
   const { user } = useAuth0();
-  // console.log(user, cartItems);
 
   const clearCartItems = () => {
     setCartItems([]);
@@ -119,78 +118,98 @@ const Cart = () => {
   return (
     <Fragment>
       <Navbar />
-      <div className="cart-items-container">
-        <div className="cart-items-titles">
-          <span className="cart-item-title">Item</span>
-          <span className="cart-item-title">Price</span>
-          <span className="cart-item-title">Quantity</span>
-          <span className="cart-item-title">Subtotal</span>
-        </div>
-        {cartItems.map((item, i) => (
-          <div className="cart-item-container" key={i}>
-            <div className="img-name-container">
-              <img className="cart-item-img" src={item.image} alt="" />
-              <span className="cart-item-name">{item.title.slice(0, 15)}</span>
-            </div>
-            <div className="cart-item-price-container">
-              <span className="cart-item-price">${item.price}</span>
-            </div>
-            <div className="cart-item-quantity-container">
-              <span className="cart-item-quantity" id={item.id}>
-                <span className="change-quantity" onClick={decreasingCartItem}>
-                  &#8722;
-                </span>{" "}
-                {item.quantity}{" "}
-                <span className="change-quantity" onClick={increasingCartItem}>
-                  &#43;
-                </span>
-              </span>
-            </div>
-            <div className="cart-item-subtotal-container">
-              <span className="cart-item-subtotal">${item.price}</span>
-            </div>
-            <div className="cart-item-clear-container" id={item.id}>
-              <span className="cart-item-clear" onClick={removingItemFromCart}>
-                {" "}
-                &#10060;
-              </span>
-            </div>
+      {cartItems.length !== 0 ? (
+        <div className="cart-items-container">
+          <div className="cart-items-titles">
+            <span className="cart-item-title">Item</span>
+            <span className="cart-item-title">Price</span>
+            <span className="cart-item-title">Quantity</span>
+            <span className="cart-item-title">Subtotal</span>
           </div>
-        ))}
-        <div className="other-buttons">
+          {cartItems.map((item, i) => (
+            <div className="cart-item-container" key={i}>
+              <div className="img-name-container">
+                <img className="cart-item-img" src={item.image} alt="" />
+                <span className="cart-item-name">
+                  {item.title.slice(0, 15)}
+                </span>
+              </div>
+              <div className="cart-item-price-container">
+                <span className="cart-item-price">${item.price}</span>
+              </div>
+              <div className="cart-item-quantity-container">
+                <span className="cart-item-quantity" id={item.id}>
+                  <span
+                    className="change-quantity"
+                    onClick={decreasingCartItem}
+                  >
+                    &#8722;
+                  </span>{" "}
+                  {item.quantity}{" "}
+                  <span
+                    className="change-quantity"
+                    onClick={increasingCartItem}
+                  >
+                    &#43;
+                  </span>
+                </span>
+              </div>
+              <div className="cart-item-subtotal-container">
+                <span className="cart-item-subtotal">${item.price}</span>
+              </div>
+              <div className="cart-item-clear-container" id={item.id}>
+                <span
+                  className="cart-item-clear"
+                  onClick={removingItemFromCart}
+                >
+                  {" "}
+                  &#10060;
+                </span>
+              </div>
+            </div>
+          ))}
+          <div className="other-buttons">
+            <Link to="/shop" className=" other continue-shopping">
+              Continue Shopping
+            </Link>
+            <span className="other clear-cart" onClick={clearCartItems}>
+              Clear Cart
+            </span>
+          </div>
+          <div className="statement-container">
+            <div className="statement-subtotal-container sc">
+              <span className="statement-title">Subtotal:</span>
+              <span className="statement-value">$100</span>
+            </div>
+            <div className="statement-shipping-container sc">
+              <span className="statement-title">Shipping Fee:</span>
+              <span className="statement-value">$9.99</span>
+            </div>
+            <div className="statement-total-container sc">
+              <span className="statement-title">Order Total:</span>
+              <span className="statement-value">$1000</span>
+            </div>
+            {user ? (
+              <span className="take-to-checkout ">
+                Proceed to{" "}
+                <Link to="/checkout" className="checkout-link">
+                  Checkout{" "}
+                </Link>
+                {user.nickname}?
+              </span>
+            ) : (
+              <span>You need to be logged in to confirm order</span>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="empty-cart-container">
+          <span className="empty-cart">Your cart is empty :(</span>
           <Link to="/shop" className=" other continue-shopping">
             Continue Shopping
           </Link>
-          <span className="other clear-cart" onClick={clearCartItems}>
-            Clear Cart
-          </span>
         </div>
-        <div className="statement-container">
-          <div className="statement-subtotal-container sc">
-            <span className="statement-title">Subtotal:</span>
-            <span className="statement-value">$100</span>
-          </div>
-          <div className="statement-shipping-container sc">
-            <span className="statement-title">Shipping Fee:</span>
-            <span className="statement-value">$9.99</span>
-          </div>
-          <div className="statement-total-container sc">
-            <span className="statement-title">Order Total:</span>
-            <span className="statement-value">$1000</span>
-          </div>
-          {user ? (
-            <span className="take-to-checkout ">
-              Proceed to{" "}
-              <Link to="/checkout" className="checkout-link">
-                Checkout{" "}
-              </Link>
-              {user.nickname}?
-            </span>
-          ) : (
-            <span>You need to be logged in to confirm order</span>
-          )}
-        </div>
-      </div>
+      )}
     </Fragment>
   );
 };

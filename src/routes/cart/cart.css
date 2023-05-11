@@ -109,3 +109,15 @@
 .change-quantity:hover {
   cursor: pointer;
 }
+.empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 20rem;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.empty-cart {
+  font-size: 3rem;
+}
