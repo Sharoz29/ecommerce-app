@@ -4,6 +4,7 @@ import { requests } from "../../requests";
 import CategoryCard from "../../components/category-card/category-card";
 import { Fragment } from "react";
 import Navbar from "../../components/navbar/navbar";
+import Footer from "../../components/footer/footer";
 
 const WomensClothing = () => {
   const [womenclothingProducts] = useFetcher(requests.womenclothing);
@@ -17,6 +18,7 @@ const WomensClothing = () => {
       <Navbar />
       <h1 className="womens-title">Find Amazing Items for Her</h1>
       <CategoryCard products={womenclothing} />
+      <Footer />
     </Fragment>
   );
 };

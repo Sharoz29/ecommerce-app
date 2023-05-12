@@ -5,6 +5,7 @@ import CartButton from "../../components/cartbutton/cartbutton";
 import { Fragment } from "react";
 import Navbar from "../../components/navbar/navbar";
 import CategoryCard from "../../components/category-card/category-card";
+import Footer from "../../components/footer/footer";
 
 const Shop = () => {
   const [allProductsProducts] = useFetcher(requests.allProducts);
@@ -20,6 +21,7 @@ const Shop = () => {
         <h1 className="shop-title">Find something you love </h1>
         <CategoryCard products={allProducts} />
       </div>
+      <Footer />
     </Fragment>
   );
 };

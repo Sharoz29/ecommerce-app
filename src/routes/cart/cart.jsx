@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setCartItems } from "../../store/cart/cartAction";
 import { useDispatch } from "react-redux";
+import Footer from "../../components/footer/footer";
 
 const cartItemsStateSelector = createSelector(makeCartItems, (cartItems) => ({
   cartItems,
@@ -155,7 +156,9 @@ const Cart = () => {
                 </span>
               </div>
               <div className="cart-item-subtotal-container">
-                <span className="cart-item-subtotal">${item.price}</span>
+                <span className="cart-item-subtotal">{`$${
+                  item.price * item.quantity
+                }`}</span>
               </div>
               <div className="cart-item-clear-container" id={item.id}>
                 <span
@@ -210,6 +213,7 @@ const Cart = () => {
           </Link>
         </div>
       )}
+      <Footer />
     </Fragment>
   );
 };

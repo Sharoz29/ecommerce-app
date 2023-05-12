@@ -11,7 +11,7 @@ const CategoriesBanner = ({ categories }) => {
 
   return (
     <div className="categories-container">
-      <h3 className="categories-title">Our Top Products</h3>
+      <h1 className="categories-title">Our Top Products</h1>
       <CategoryCard products={categoryTypes} />
     </div>
   );

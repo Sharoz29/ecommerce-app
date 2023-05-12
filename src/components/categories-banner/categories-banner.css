@@ -1,6 +1,9 @@
 .category:hover {
   cursor: pointer;
 }
+.categories-title {
+  padding-left: 1rem;
+}
 
 .cart-adding-button:hover {
   cursor: pointer;
