@@ -1,6 +1,6 @@
 import "./searchbar.css";
 
-const Searchbar = () => {
+const Searchbar = ({ handleTyping }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -13,6 +13,7 @@ const Searchbar = () => {
           className="searchbar"
           placeholder="What are you looking for today?"
           autoFocus={false}
+          onChange={handleTyping}
         />
         <span className="searchbar-submit button">
           <svg

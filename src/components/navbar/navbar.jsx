@@ -1,6 +1,6 @@
 import "./navbar.css";
 import Searchbar from "../searchbar/searchbar";
-import { useState } from "react";
+
 import { Link, Outlet } from "react-router-dom";
 
 import CategoriesBar from "../categoriesbar/categoriesbar";
@@ -9,7 +9,7 @@ import useFetcher from "../../fetcher";
 import { requests } from "../../requests";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Navbar = () => {
+const Navbar = ({ handleTyping }) => {
   const { loginWithRedirect } = useAuth0();
   const { logout } = useAuth0();
   const { user } = useAuth0();
@@ -35,7 +35,9 @@ const Navbar = () => {
             />
           </div>
         </Link>
-        <Searchbar />
+        <Link to={"/shop"} className="Link">
+          <Searchbar handleTyping={handleTyping} />
+        </Link>
         {user && (
           <div className="user-image-container">
             <img src={user.picture} alt="" className="user-image" />
