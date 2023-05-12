@@ -28,7 +28,7 @@ const Shop = () => {
       return productName.includes(typing);
     });
     setFilteredProducts(filteredProductsArr);
-  }, [typing]);
+  }, [typing, allProducts]);
 
   return (
     <Fragment>

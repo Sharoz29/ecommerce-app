@@ -166,9 +166,9 @@ const Cart = () => {
                 </span>
               </div>
               <div className="cart-item-subtotal-container">
-                <span className="cart-item-subtotal">{`$${
+                <span className="cart-item-subtotal">{`$${(
                   item.price * item.quantity
-                }`}</span>
+                ).toFixed(2)}`}</span>
               </div>
               <div className="cart-item-clear-container" id={item.id}>
                 <span
@@ -192,7 +192,9 @@ const Cart = () => {
           <div className="statement-container">
             <div className="statement-subtotal-container sc">
               <span className="statement-title">Subtotal:</span>
-              <span className="statement-value">${subtotal}</span>
+              <span className="statement-value">
+                ${Number(subtotal).toFixed(2)}
+              </span>
             </div>
             <div className="statement-shipping-container sc">
               <span className="statement-title">Shipping Fee:</span>
@@ -200,7 +202,9 @@ const Cart = () => {
             </div>
             <div className="statement-total-container sc">
               <span className="statement-title">Order Total:</span>
-              <span className="statement-value">{`$${subtotal + 9.99}`}</span>
+              <span className="statement-value">{`$${Number(
+                subtotal + 9.99
+              ).toFixed(2)}`}</span>
             </div>
             {user ? (
               <span className="take-to-checkout ">

@@ -53,7 +53,8 @@ const CategoryCard = ({ products }) => {
   };
 
   const allProducts = products;
-  if (products.length === 0) {
+
+  if (allProducts.length === 0) {
     return (
       <div className="no-products">
         <h1>No products Found</h1>
