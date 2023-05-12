@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { setCartItems } from "../../store/cart/cartAction";
 import { useDispatch } from "react-redux";
 import Footer from "../../components/footer/footer";
+import { useState, useEffect } from "react";
 
 const cartItemsStateSelector = createSelector(makeCartItems, (cartItems) => ({
   cartItems,
@@ -21,6 +22,7 @@ const cartItemsActionDispatcher = (dispatch) => ({
 const Cart = () => {
   const { cartItems } = useSelector(cartItemsStateSelector);
   const { setCartItems } = cartItemsActionDispatcher(useDispatch());
+  const [subtotal, setSubtotal] = useState("");
 
   const { user } = useAuth0();
 
@@ -116,6 +118,14 @@ const Cart = () => {
     removedCartItem(cartItems, removed);
   };
 
+  useEffect(() => {
+    const newCartSubtotal = cartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity * cartItem.price,
+      0
+    );
+    setSubtotal(newCartSubtotal);
+  }, [cartItems]);
+
   return (
     <Fragment>
       <Navbar />
@@ -182,7 +192,7 @@ const Cart = () => {
           <div className="statement-container">
             <div className="statement-subtotal-container sc">
               <span className="statement-title">Subtotal:</span>
-              <span className="statement-value">$100</span>
+              <span className="statement-value">${subtotal}</span>
             </div>
             <div className="statement-shipping-container sc">
               <span className="statement-title">Shipping Fee:</span>
@@ -190,7 +200,7 @@ const Cart = () => {
             </div>
             <div className="statement-total-container sc">
               <span className="statement-title">Order Total:</span>
-              <span className="statement-value">$1000</span>
+              <span className="statement-value">{`$${subtotal + 9.99}`}</span>
             </div>
             {user ? (
               <span className="take-to-checkout ">

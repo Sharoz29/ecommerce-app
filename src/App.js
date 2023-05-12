@@ -6,6 +6,7 @@ import Electronics from "./routes/electronics/electronics";
 import Jewelery from "./routes/jewelery/jewelery";
 import MensClothing from "./routes/mens-clothing/mensClothing";
 import WomensClothing from "./routes/womens-clothing/womensClothing";
+import Checkout from "./routes/checkout/checkout";
 
 import Cart from "./routes/cart/cart.jsx";
 
@@ -42,7 +43,7 @@ function App() {
     },
     {
       path: "checkout",
-      element: <Home />,
+      element: <Checkout />,
     },
   ]);
 
