@@ -1,4 +1,5 @@
 import "./categories-banner.css";
+import Spinner from "../spinner/spinner";
 
 import CategoryCard from "../category-card/category-card";
 
@@ -6,7 +7,7 @@ const CategoriesBanner = ({ categories }) => {
   const categoryTypes = categories;
 
   if (categoryTypes.length === 0) {
-    return <div>Loading</div>;
+    return <Spinner />;
   }
 
   return (

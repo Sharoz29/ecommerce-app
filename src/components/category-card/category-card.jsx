@@ -50,7 +50,6 @@ const CategoryCard = ({ products }) => {
     });
     increaseCartItem(added);
   };
-  // console.log(cartItems);
 
   const allProducts = products;
   return (
